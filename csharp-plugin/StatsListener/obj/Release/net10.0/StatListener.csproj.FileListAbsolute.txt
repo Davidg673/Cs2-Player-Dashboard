@@ -1,0 +1,12 @@
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\bin\Release\net10.0\StatListener.deps.json
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\bin\Release\net10.0\StatListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\bin\Release\net10.0\StatListener.pdb
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.csproj.AssemblyReference.cache
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.GeneratedMSBuildEditorConfig.editorconfig
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.AssemblyInfoInputs.cache
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.AssemblyInfo.cs
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.csproj.CoreCompileInputs.cache
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\refint\StatListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\StatListener.pdb
+D:\Cs2-Player-Dashboard\csharp-plugins\StatListener\StatListener\obj\Release\net10.0\ref\StatListener.dll

@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|d:\\cs2-player-dashboard\\csharp-plugin\\statslistener\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|solutionrelative:playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "PlayerStats.cs",
+              "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\PlayerStats.cs",
+              "RelativeToolTip": "PlayerStats.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAgwEoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-03T04:08:21.931Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
