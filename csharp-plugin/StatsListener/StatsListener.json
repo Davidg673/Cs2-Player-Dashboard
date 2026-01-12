@@ -1,0 +1,10 @@
+{
+  "Database": {
+    "Host": "cs2_server-cs2-db-1",
+    "Port": 3306,
+    "User": "server",
+    "Password": "changeme",
+    "Database_Name": "db"
+  },
+  "PluginSettings": {}
+}
