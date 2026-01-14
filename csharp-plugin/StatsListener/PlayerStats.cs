@@ -53,24 +53,38 @@ namespace StatsListener
                 return;
             }
 
-            statsManager.Start();
 
             RegisterEventHandler<EventPlayerDeath>(statsManager.OnPlayerDeath, HookMode.Post);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd, HookMode.Post);
+            RegisterEventHandler<EventBombPlanted>(statsManager.OnBombPlanted, HookMode.Post);
+            RegisterEventHandler<EventBombDefused>(statsManager.OnBombDefused, HookMode.Post);
+            RegisterEventHandler<EventRoundEnd>(statsManager.OnRoundEnd, HookMode.Post);
+            RegisterEventHandler<EventPlayerDisconnect>(statsManager.OnPlayerDisconnect, HookMode.Post);
+            RegisterEventHandler<EventPlayerConnectFull>(statsManager.OnPlayerConnect, HookMode.Post);
+            RegisterEventHandler<EventPlayerHurt>(statsManager.OnPlayerHurt, HookMode.Post);
+
+            statsManager.Start();
 
         }
 
         public override void Unload(bool hotReload)
         {
             base.Unload(hotReload);
-            statsManager.Stop();
         }
 
         private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
         {
-            Task.Run(async () =>
+
+            _ = Task.Run(async () =>
             {
-                await statsManager.FlushToDatabaseAsync();
+                try
+                {
+                    await statsManager.FlushToDatabaseAsync();
+                } 
+                catch( Exception ex)
+                {
+                    Console.WriteLine($"[Stats Listener] {ex}");
+                }
             }); 
             return HookResult.Continue;
         }

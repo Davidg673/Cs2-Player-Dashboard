@@ -1,16 +1,12 @@
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.deps.json
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.dll
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.pdb
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.csproj.AssemblyReference.cache
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.GeneratedMSBuildEditorConfig.editorconfig
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.AssemblyInfoInputs.cache
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.AssemblyInfo.cs
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.csproj.CoreCompileInputs.cache
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.dll
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\refint\StatsListener.dll
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.pdb
-D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\ref\StatsListener.dll
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.sourcelink.json
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.deps.json
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\StatsListener.pdb
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\CounterStrikeSharp.API.dll
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\McMaster.NETCore.Plugins.dll
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
@@ -54,3 +50,7 @@ D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\Tomlyn.dl
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\bin\Release\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsLis.EBB33A14.Up2Date
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\refint\StatsListener.dll
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\StatsListener.pdb
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Release\net8.0\ref\StatsListener.dll

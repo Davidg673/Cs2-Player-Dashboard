@@ -1,15 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|d:\\cs2-player-dashboard\\csharp-plugin\\statslistener\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|solutionrelative:databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|d:\\cs2-player-dashboard\\csharp-plugin\\statslistener\\statsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|solutionrelative:statsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|d:\\cs2-player-dashboard\\csharp-plugin\\statslistener\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|solutionrelative:playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 332,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +31,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "PlayerStats.cs",
+              "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\PlayerStats.cs",
+              "RelativeToolTip": "PlayerStats.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAqwD8AAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T08:41:18.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StatsManager.cs",
+              "DocumentMoniker": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\StatsManager.cs",
+              "RelativeDocumentMoniker": "StatsManager.cs",
+              "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\StatsManager.cs",
+              "RelativeToolTip": "StatsManager.cs",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAAANEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T18:32:07.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DatabaseManager.cs",
+              "DocumentMoniker": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\DatabaseManager.cs",
+              "RelativeDocumentMoniker": "DatabaseManager.cs",
+              "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\DatabaseManager.cs",
+              "RelativeToolTip": "DatabaseManager.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAiwC0AAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T19:09:47.431Z",
+              "EditorCaption": ""
             }
           ]
         }
