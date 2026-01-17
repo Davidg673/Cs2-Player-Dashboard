@@ -2,8 +2,21 @@ from fastapi import  FastAPI, Request
 from fastapi.responses import  RedirectResponse
 from urllib.parse import  urlencode
 import  requests
+from  fastapi.middleware.cors import  CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173"
+]
+
+app.middleware(  #Ensures local front end can call online backend
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
 
 STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
 RETURN_URL = "http://localhost:8000/auth/steam/callback"
