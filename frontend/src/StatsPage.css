@@ -1,0 +1,126 @@
+
+
+.app-background {
+  background: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.center-highlight{
+  background: rgba(49, 49, 49, 0.8);
+  padding-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 30rem;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items:flex-start;
+  color: white;
+}
+
+.center-box{
+  display: flex;
+  flex-direction: column;
+  background: rgba(49, 49, 49, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 20rem;
+  background: #1f1f1f;
+  max-width: 100%;
+}
+
+.center-box-sub{
+  background: rgba(49, 49, 49, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 20rem;
+  color: white;
+}
+.center-box-sub h2{
+  padding-left: 1rem;
+}
+  
+.center-panel{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  text-align: left;
+  align-items:flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.top-banner{
+  background-image: url('/banner1.png');
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 15rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.top-banner-sub{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  border-radius: 16px;
+}
+
+.top-banner::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 0;
+}
+
+.top-banner h1,
+.top-banner img{
+  position: relative;
+  z-index: 1;
+}
+
+.player-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+  margin-right: 1.5rem;
+}
+
+.error-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  text-align: center;
+}
+
+.error-center p{
+  color: red;
+  font-size: 20px;
+}

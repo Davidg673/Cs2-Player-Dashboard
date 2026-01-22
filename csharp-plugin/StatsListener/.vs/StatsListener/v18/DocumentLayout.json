@@ -42,8 +42,7 @@
               "RelativeToolTip": "PlayerStats.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAqwD8AAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T08:41:18.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-14T08:41:18.001Z"
             },
             {
               "$type": "Document",
@@ -53,10 +52,9 @@
               "RelativeDocumentMoniker": "StatsManager.cs",
               "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\StatsManager.cs",
               "RelativeToolTip": "StatsManager.cs",
-              "ViewState": "AgIAAM0AAAAAAAAAAAAAANEAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAgwNEAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T18:32:07.581Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T18:32:07.581Z"
             },
             {
               "$type": "Document",
@@ -66,7 +64,7 @@
               "RelativeDocumentMoniker": "DatabaseManager.cs",
               "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\DatabaseManager.cs",
               "RelativeToolTip": "DatabaseManager.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAiwC0AAABRAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAUwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-12T19:09:47.431Z",
               "EditorCaption": ""
