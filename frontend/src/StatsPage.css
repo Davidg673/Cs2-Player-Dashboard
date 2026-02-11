@@ -1,7 +1,7 @@
 
 
 .app-background {
-  background: #1f1f1f;
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,6 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   width: 20rem;
-  background: #1f1f1f;
   max-width: 100%;
 }
 
@@ -124,3 +123,4 @@
   color: red;
   font-size: 20px;
 }
+

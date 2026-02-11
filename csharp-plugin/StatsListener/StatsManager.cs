@@ -251,10 +251,10 @@ namespace StatsListener
             foreach ( var entity in snapshotPlayer)
             {
                 var val = entity.Value;
-                //Console.WriteLine($@"Player {entity.Key}, Kills: {entity.Value.kills}, Deaths: {entity.Value.deaths},Assists: {entity.Value.assists},Headshots: {entity.Value.headshots},
-                //                 Damage dealt: {entity.Value.damageDealt}, Damage Received: {entity.Value.damageReceived}, Bomb plants: {entity.Value.bombPlants}, Bomb Defuses: {entity.Value.bombDefuses},
-                //                 Time played cummulative: {entity.Value.timePlayed}, last played: {entity.Value.lastPlayed}, rounds won: {entity.Value.roundsWon}, rounds won: {entity.Value.roundsWon}");
                 //DEBUG CONSOLE PRINT
+                Console.WriteLine($@"Player {entity.Key}, Kills: {entity.Value.kills}, Deaths: {entity.Value.deaths},Assists: {entity.Value.assists},Headshots: {entity.Value.headshots},
+                                 Damage dealt: {entity.Value.damageDealt}, Damage Received: {entity.Value.damageReceived}, Bomb plants: {entity.Value.bombPlants}, Bomb Defuses: {entity.Value.bombDefuses},
+                                 Time played cummulative: {entity.Value.timePlayed}, last played: {entity.Value.lastPlayed}, rounds won: {entity.Value.roundsWon}, rounds won: {entity.Value.roundsWon}");
                 tasks.Add(dbManager.SaveStatsAsync(entity.Key, val.kills, val.deaths,val.assists,val.headshots,val.damageDealt,
                                                     val.damageReceived,val.bombPlants,val.bombDefuses,val.timePlayed, val.lastPlayed,val.roundsWon,val.roundsLost));
             }
@@ -265,8 +265,8 @@ namespace StatsListener
                 foreach (var weaponEntry in weapons)
                 {
                     WeaponStats weaponStat = weaponEntry.Value;
-                    //Console.WriteLine($"Player {entity.Key},Weapon: {weaponEntry.Key}, Kills: {weaponStat.kills}, Headshots: {weaponStat.headshots}, Shots fired: {weaponStat.shotsFired}, Shots hit: {weaponStat.shotsHit}");
                     //DEBUG CONSOLE PRINT
+                    Console.WriteLine($"Player {entity.Key},Weapon: {weaponEntry.Key}, Kills: {weaponStat.kills}, Headshots: {weaponStat.headshots}, Shots fired: {weaponStat.shotsFired}, Shots hit: {weaponStat.shotsHit}");
                     tasks.Add(dbManager.SaveSingleWeaponStatsAsync(entity.Key, weaponEntry.Key, weaponStat.kills, weaponStat.headshots, weaponStat.shotsHit,weaponStat.damageDealt));
                 }
             }

@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|d:\\cs2-player-dashboard\\csharp-plugin\\statslistener\\statsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCB3A5C-9BDC-B0AB-CE66-F62B983AA00E}|StatsListener.csproj|solutionrelative:statsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StatsManager.cs",
+              "DocumentMoniker": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\StatsManager.cs",
+              "RelativeDocumentMoniker": "StatsManager.cs",
+              "ToolTip": "D:\\Cs2-Player-Dashboard\\csharp-plugin\\StatsListener\\StatsManager.cs",
+              "RelativeToolTip": "StatsManager.cs",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAqwAwBAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-24T18:56:31.624Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"

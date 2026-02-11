@@ -1,12 +1,14 @@
 import React from "react";
 import "./StatsPage.css"
 import { useEffect,useState } from "react";
-import { data, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 
 
 const StatsPage = () =>{
   const [playerData,setPlayerData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const location = useLocation();
 
   const reLogin = () =>{
@@ -20,6 +22,7 @@ const StatsPage = () =>{
     if (!steamID)
     {
       setError("Steam ID not found");
+      setLoading(false);
       return;
     }
 
@@ -45,6 +48,8 @@ const StatsPage = () =>{
       {
         console.error("Fetch error: ", err)
         setError((err as Error).message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -88,26 +93,6 @@ const StatsPage = () =>{
   };
 
 
-  const colors = [
-  "#ff6b6b",
-  "#4dabf7",
-  "#ffd43b",
-  "#15aabf",
-  "#f06595",
-  "#ff922b",
-  "#69db7c",
-  "#845ef7"
-  ]
-
-  const randomGradient = () =>{
-    const c1 = colors[Math.floor(Math.random() * colors.length)]
-    const c2 = colors[Math.floor(Math.random() * colors.length)]
-
-    return {
-      background:`linear-gradient(135deg, ${c1},${c2})`,
-    };
-  };
-
   const normalizeDate = (dateStr:string | null): string => {
     if (!dateStr) return "";
     const newDate = new Date(dateStr);
@@ -124,15 +109,17 @@ const StatsPage = () =>{
   }
 
 
+  if (loading) return <div className="error-center"><p>Loading...</p></div>
+
   if (!error) return (
     <>
       <div className='app-background'>
         <div className='top-banner'>
           <div className="top-banner-sub">
-            <img className='player-image' src='public/operator.png'></img>
+            <img className='player-image' src='/operator.png' alt="Operator"></img>
             <h1> {playerData?.player.steamid}</h1>
           </div> 
-          <div className="top-banner-sub" style={randomGradient()}>
+          <div className="top-banner-sub" >
             <h2>Total Playtime: {normalizePlaytime(playerData?.player.playtime)}</h2>
             <h2 style={{paddingLeft: "1rem"}}>Last Played: {normalizeDate(playerData?.player.last_played)}</h2>
           </div>
@@ -140,7 +127,6 @@ const StatsPage = () =>{
         <div className="center-panel">
           <div>
           <PlayerStatsCard label="Kills" value={playerData?.player.kills}></PlayerStatsCard>
-          <PlayerStatsCard label="Deaths" value={playerData?.player.deaths}></PlayerStatsCard>
           <PlayerStatsCard label="Deaths" value={playerData?.player.deaths}></PlayerStatsCard>
           <PlayerStatsCard label="Assists" value={playerData?.player.assists}></PlayerStatsCard>
           <PlayerStatsCard label="Headshots" value={playerData?.player.headshots}></PlayerStatsCard>

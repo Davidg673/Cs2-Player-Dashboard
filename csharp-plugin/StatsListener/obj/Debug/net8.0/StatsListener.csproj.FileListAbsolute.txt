@@ -1,0 +1,6 @@
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.csproj.AssemblyReference.cache
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.GeneratedMSBuildEditorConfig.editorconfig
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.AssemblyInfoInputs.cache
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.AssemblyInfo.cs
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.csproj.CoreCompileInputs.cache
+D:\Cs2-Player-Dashboard\csharp-plugin\StatsListener\obj\Debug\net8.0\StatsListener.sourcelink.json

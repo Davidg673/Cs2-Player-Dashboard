@@ -1,4 +1,6 @@
 import React from "react";
+import "./LoginPage.css"
+import Meteors from "./components/Meteors"
 
 const LoginPage = ()=>{
     const handleLogin = () =>{
@@ -6,10 +8,13 @@ const LoginPage = ()=>{
     };
 
     return (
-        <div className = "login-page"> 
-            <h1> Welcome to CS2 Dashboard!</h1>
-            <button onClick={handleLogin}>Login with Steam</button>
-        </div>
+        <>
+            <Meteors/>
+            <div className = "login-background"> 
+                <h1> Welcome to CS2 Dashboard!</h1>
+                <button onClick={handleLogin}>Login with Steam</button>
+            </div>
+        </>
     );
 
 };
