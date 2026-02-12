@@ -1,9 +1,14 @@
+import os
 import  requests
+from dotenv import load_dotenv
 from requests import RequestException
 
+load_dotenv()
 
-STEAM_API_KEY = "BA3233F31757A3833B588A637B26E9C9"
+STEAM_API_KEY = os.getenv("STEAM_API_KEY","").strip()
 
+if not STEAM_API_KEY:
+    raise RuntimeError("Missing Steam API key env variable")
 
 def get_player_name(steam_id: str) -> str | None:
     """

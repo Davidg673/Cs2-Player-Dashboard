@@ -34,8 +34,9 @@ weaponStats = Table(
     PrimaryKeyConstraint("steamid","weapon")
 )
 
+"""
 player_roles = Table(
     "player_roles",
     metadata,
-
 )
+"""

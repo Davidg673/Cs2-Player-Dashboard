@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,8 +10,9 @@ namespace StatsListener
 {
     public class PluginConfig
     {
-        public DatabaseConfig Database { get; set; }
-        public PluginSettings PluginSettings { get; set; }
+        //Must match names in json so they can be mapped automatically when Deserialize gets called
+        public string ingestUrl { get; set; } = "";   
+        public string apiKey { get; set; } = "";
 
         public static PluginConfig LoadConfig(string path)
         {
@@ -20,26 +22,22 @@ namespace StatsListener
             }
 
             string json = File.ReadAllText(path);
-            var config = JsonSerializer.Deserialize<PluginConfig>(json);
+
+            var config = JsonSerializer.Deserialize<PluginConfig>(json) ?? throw new InvalidOperationException("Config deserialised to null");
+
+            config.ingestUrl = config.ingestUrl.Trim() ?? "";
+            config.apiKey = config.apiKey.Trim() ?? "";
+
+            if (!Uri.TryCreate(config.ingestUrl, UriKind.Absolute, out _))
+                throw new InvalidOperationException($"Invalid ingestUrl in config: '{config.ingestUrl}'");
+
+            if (String.IsNullOrEmpty(config.apiKey))
+                throw new InvalidOperationException("Missign apiKey in config");
+
+            Console.WriteLine($"Loaded ingestUrl='{config.ingestUrl}', apiKey length = {config.apiKey?.Length ?? 0}");
+
             return config;
         }
     }
 
-    public class DatabaseConfig
-    {
-        public string Host { get; set; } = "cs2_server-cs2-db-1";
-        public int Port { get; set; } = 3306;
-        public string User { get; set; } = "server";
-        public string Password { get; set; } = "changeme";
-        public string Database_Name { get; set; } = "db";
-
-        public string GetConnectionString()
-        {
-            return $"Server={Host};Port={Port};Database={Database_Name};Uid={User};Pwd={Password};";
-        }
-    }
-
-    public class PluginSettings
-    {
-    }
 }

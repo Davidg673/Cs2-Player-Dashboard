@@ -3,8 +3,10 @@ import "./LoginPage.css"
 import Meteors from "./components/Meteors"
 
 const LoginPage = ()=>{
+  const BACKEND = import.meta.env.VITE_BACKEND_BASE_URL;
+
     const handleLogin = () =>{
-        window.location.href = "https://prewar-lavonne-gutsily.ngrok-free.dev/auth/steam/login";
+        window.location.href = `${BACKEND}/auth/steam/login`;
     };
 
     return (

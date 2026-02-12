@@ -1,12 +1,24 @@
+import os
+from dotenv import load_dotenv
 from fastapi import Request, APIRouter
 from fastapi.responses import  RedirectResponse
 from urllib.parse import  urlencode
 import  requests
 
-RETURN_URL = "https://prewar-lavonne-gutsily.ngrok-free.dev/auth/steam/callback"
-STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
-FRONTEND_URL = "http://localhost:5173/dashboard"
+load_dotenv()
 
+BACKEND_URL = os.getenv("BACKEND_URL")
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+
+STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
+
+missing = [k for k,v in {
+    "BACKEND_URL":BACKEND_URL,
+    "FRONTEND_URL":FRONTEND_URL,
+}.items() if not v]
+
+if missing:
+    raise RuntimeError(f"Missing env variables: {', '.join(missing)}")
 
 router = APIRouter(tags=["auth"])
 
@@ -15,13 +27,13 @@ def steam_login():  #Sends request to steam for user to log in and retrieve the 
     params = {
         "openid.ns" : "http://specs.openid.net/auth/2.0",
         "openid.mode" : "checkid_setup",
-        "openid.return_to" : RETURN_URL,
-        "openid.realm" : "https://prewar-lavonne-gutsily.ngrok-free.dev",
+        "openid.return_to" : f"{BACKEND_URL}/auth/steam/callback",
+        "openid.realm" : f"{BACKEND_URL}",
         "openid.identity" : "http://specs.openid.net/auth/2.0/identifier_select",
         "openid.claimed_id" : "http://specs.openid.net/auth/2.0/identifier_select",
         "force_login" : "true"
     }
-    return RedirectResponse(f"{STEAM_OPENID_URL }?{urlencode(params)}") #returns url with data
+    return RedirectResponse(f"{STEAM_OPENID_URL}?{urlencode(params)}") #returns url with data
 
 
 
@@ -34,8 +46,8 @@ def steam_return(request: Request):
     r = requests.post(STEAM_OPENID_URL, data= query, timeout=5)  #sends request back to steam for verification
 
     if "is_valid:true" not in r.text:
-        return RedirectResponse(f"{FRONTEND_URL}?error=invalid_login")
+        return RedirectResponse(f"{FRONTEND_URL}/dashboard?error=invalid_login")
 
     steam_id = query["openid.claimed_id"].split("/")[-1]
 
-    return RedirectResponse(f"{FRONTEND_URL}?steam_id={steam_id}")  #back to front-end
+    return RedirectResponse(f"{FRONTEND_URL}/dashboard?steam_id={steam_id}")  #back to front-end

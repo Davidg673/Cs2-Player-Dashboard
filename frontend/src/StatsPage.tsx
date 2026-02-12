@@ -8,11 +8,12 @@ const StatsPage = () =>{
   const [playerData,setPlayerData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const BACKEND = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const location = useLocation();
 
   const reLogin = () =>{
-      window.location.href = "https://prewar-lavonne-gutsily.ngrok-free.dev/auth/steam/login";
+      window.location.href = `${BACKEND}/auth/steam/login`;
   };
 
   useEffect(()=> {
@@ -31,11 +32,15 @@ const StatsPage = () =>{
       {
         console.log("Fetching player data for: ", steamID);
         
-        const res = await fetch(`http://localhost:8000/player/${steamID}`);
+        const res = await fetch(`${BACKEND}/player/${steamID}`,{
+          headers: {"ngrok-skip-browser-warning": "true"},
+      });
         console.log("Response status: ", res.status);
+        console.log(res.status, res.redirected, res.url);
 
         const data = await res.json();
         console.log("Fetched data: ", data);
+
 
         if (!res.ok){
           setError(data.detail || "Unknown server error");

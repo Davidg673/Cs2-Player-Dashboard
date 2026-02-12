@@ -44,14 +44,7 @@ namespace StatsListener
                 return;
             }
 
-            statsManager = new StatsManager(this,config.Database);
-
-            bool dbReady = statsManager.dbManager.TestConnectionAsync().GetAwaiter().GetResult();
-            if (!dbReady)
-            {
-                Console.WriteLine($"[SatsListener] Database not available. Plugin will not start. Make sure config file is setup correctly");
-                return;
-            }
+            statsManager = new StatsManager(this,config);
 
 
             RegisterEventHandler<EventPlayerDeath>(statsManager.OnPlayerDeath, HookMode.Post);
@@ -75,17 +68,14 @@ namespace StatsListener
         private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
         {
 
-            _ = Task.Run(async () =>
+            try
             {
-                try
-                {
-                    await statsManager.FlushToDatabaseAsync();
-                } 
-                catch( Exception ex)
-                {
-                    Console.WriteLine($"[Stats Listener] {ex}");
-                }
-            }); 
+                statsManager.FlushToBackend();
+            } 
+            catch( Exception ex)
+            {
+                Console.WriteLine($"[Stats Listener] {ex}");
+            }
             return HookResult.Continue;
         }
     }

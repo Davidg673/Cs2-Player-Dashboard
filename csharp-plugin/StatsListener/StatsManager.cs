@@ -1,21 +1,17 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
-using CounterStrikeSharp.API.Modules.Entities;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static StatsListener.StatsManager;
 
 
 namespace StatsListener
 {
+    using PlayerSnapshot = ConcurrentDictionary<ulong, StatsManager.PlayerStats>;
+    using WeaponSnapshot = ConcurrentDictionary<ulong, ConcurrentDictionary<string, WeaponStats>>;
     public class StatsManager
     {
 
-        ConcurrentDictionary<ulong, PlayerStats> statsCache;  //Small cache used to upload to database to avoid lag from constant transmission
+        ConcurrentDictionary<ulong, PlayerStats> statsCache;  //Small cache used to upload to avoid lag from constant transmission
 
         ConcurrentDictionary<ulong, ConcurrentDictionary<string, WeaponStats>> weaponStatsCache;
         ConcurrentDictionary<ulong, DateTime> playerJoinedTime;
@@ -45,13 +41,13 @@ namespace StatsListener
 
         }
 
-        public DatabaseManager dbManager;
+        public IngestClient ingestClient;
 
 
 
-        public StatsManager(BasePlugin plugin, DatabaseConfig dbConfig)
+        public StatsManager(BasePlugin plugin, PluginConfig config)
         {
-            dbManager = new DatabaseManager(dbConfig.GetConnectionString());
+            ingestClient = new IngestClient(config.ingestUrl, config.apiKey);
         }
 
         public void Start()
@@ -60,8 +56,6 @@ namespace StatsListener
             statsCache = new ConcurrentDictionary<ulong, PlayerStats>();
             weaponStatsCache = new ConcurrentDictionary<ulong, ConcurrentDictionary<string, WeaponStats>>();
             playerJoinedTime = new ConcurrentDictionary<ulong, DateTime>();
-
-            dbManager.Start();
         }
 
 
@@ -226,11 +220,12 @@ namespace StatsListener
 
 
         //reads saved data in dictionary and communicates with db manager for transfer
-        public async Task FlushToDatabaseAsync()
+        public void FlushToBackend()
         {
+            ////Create Snapshot of data and wipe it for next round. snapshot ensures ogirinal data can still record without waiting on HTTP operations.
             ConcurrentDictionary<ulong, PlayerStats> snapshotPlayer;
             ConcurrentDictionary<ulong, ConcurrentDictionary<string,WeaponStats>> snapshotWeapon;
-            var tasks = new List<Task>();
+            List<IngestPayload> payloads = new List<IngestPayload>();
 
 
             if (statsCache.Count == 0 && weaponStatsCache.Count == 0) return;
@@ -248,37 +243,26 @@ namespace StatsListener
 
             Console.WriteLine("=== FLUSHING PLAYER STATS ===");
 
-            foreach ( var entity in snapshotPlayer)
+            foreach (var kvp in snapshotPlayer)
             {
-                var val = entity.Value;
-                //DEBUG CONSOLE PRINT
-                Console.WriteLine($@"Player {entity.Key}, Kills: {entity.Value.kills}, Deaths: {entity.Value.deaths},Assists: {entity.Value.assists},Headshots: {entity.Value.headshots},
-                                 Damage dealt: {entity.Value.damageDealt}, Damage Received: {entity.Value.damageReceived}, Bomb plants: {entity.Value.bombPlants}, Bomb Defuses: {entity.Value.bombDefuses},
-                                 Time played cummulative: {entity.Value.timePlayed}, last played: {entity.Value.lastPlayed}, rounds won: {entity.Value.roundsWon}, rounds won: {entity.Value.roundsWon}");
-                tasks.Add(dbManager.SaveStatsAsync(entity.Key, val.kills, val.deaths,val.assists,val.headshots,val.damageDealt,
-                                                    val.damageReceived,val.bombPlants,val.bombDefuses,val.timePlayed, val.lastPlayed,val.roundsWon,val.roundsLost));
+                IngestPayload payload = ConvertToPayload(kvp.Key,kvp.Value, snapshotWeapon);
+                payloads.Add(payload);
             }
 
-            foreach (var entity in snapshotWeapon)
+            _ = Task.Run(async () =>
             {
-                var weapons = entity.Value;
-                foreach (var weaponEntry in weapons)
+                try
                 {
-                    WeaponStats weaponStat = weaponEntry.Value;
-                    //DEBUG CONSOLE PRINT
-                    Console.WriteLine($"Player {entity.Key},Weapon: {weaponEntry.Key}, Kills: {weaponStat.kills}, Headshots: {weaponStat.headshots}, Shots fired: {weaponStat.shotsFired}, Shots hit: {weaponStat.shotsHit}");
-                    tasks.Add(dbManager.SaveSingleWeaponStatsAsync(entity.Key, weaponEntry.Key, weaponStat.kills, weaponStat.headshots, weaponStat.shotsHit,weaponStat.damageDealt));
+                    await ingestClient.SendManyAsync(payloads);
                 }
-            }
-
-            await Task.WhenAll(tasks);
-
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[Stats Listener] {ex}");
+                }
+            });
             Console.WriteLine("==============================");
 
         }
-
-
-
         private static string NormalizeWeapon(string weapon)
         {
             if (string.IsNullOrEmpty(weapon))
@@ -291,5 +275,51 @@ namespace StatsListener
 
             return weapon;
         }
+        /// <summary>
+        /// Converts snapshot of player stats dictionary to a payload (JSON) ready for HTTP 
+        /// </summary>
+        /// <param name="playerSnapshot"></param>
+        /// <param name="weaponSnapshot"></param>
+        /// <returns> Payload object as representation of JSON </returns>
+        private static IngestPayload ConvertToPayload(ulong key, PlayerStats stats, WeaponSnapshot weaponSnapshot) 
+        {
+            var payload = new IngestPayload();
+
+            var dt = stats.lastPlayed.ToUniversalTime();
+            dt = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Utc);
+
+            payload.player = new PlayerPayload
+            {
+                steamid = key.ToString(),
+                kills = stats.kills,
+                headshots = stats.headshots,
+                damage_dealt = stats.damageDealt,
+                damage_received = stats.damageReceived,
+                bomb_plants = stats.bombPlants,
+                bomb_defuses = stats.bombDefuses,
+                playtime = stats.timePlayed,
+                last_played = dt,
+                rounds_won = stats.roundsWon,
+                rounds_lost = stats.roundsLost
+            };
+
+            if (weaponSnapshot.TryGetValue(key,out var weaponDict))
+            {
+                foreach (var weaponkvp in weaponDict)
+                {
+                    payload.weapons.Add(new WeaponPayload
+                    {
+                        weapon = weaponkvp.Key,
+                        kills = weaponkvp.Value.kills,
+                        headshots = weaponkvp.Value.headshots,
+                        shots_hit = weaponkvp.Value.shotsHit,
+                        damage_dealt = weaponkvp.Value.damageDealt
+                    });
+                }
+            }
+
+            return payload;
+        }
+
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StatsListener")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfebe591a880182f7ab48f9e1deac176bc0fae68")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00835d1bb8f44bfe261eece9ba32b484f2bc348e")]
 [assembly: System.Reflection.AssemblyProductAttribute("StatsListener")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StatsListener")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
