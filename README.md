@@ -1,5 +1,8 @@
 # Cs2-Player-Dashboard
 
+## Demo
+![Demo](screenshots/demo.gif)
+
 ## Overview
 A full-stack web application for tracking and visualising Counter-Strike 2 player statistics in real time.
 The system integrates directly with a CS2 server plugin to collect match data and present detailed player insights through a web-based dashboard.
@@ -89,7 +92,3 @@ Ensure `BACKEND_URL` matches the deployed backend domain.
 - Add Owner/Admin/user system
 - Admin ticket feature
 - Server performance/logs from admin/owner page
-
-
-## Demo
-![Demo](screenshots/demo.gif)
