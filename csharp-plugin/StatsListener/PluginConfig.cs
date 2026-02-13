@@ -13,6 +13,7 @@ namespace StatsListener
         //Must match names in json so they can be mapped automatically when Deserialize gets called
         public string ingestUrl { get; set; } = "";   
         public string apiKey { get; set; } = "";
+        public string frontendUrl { get; set; } = "";
 
         public static PluginConfig LoadConfig(string path)
         {

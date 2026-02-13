@@ -51,7 +51,15 @@ This project demonstrates full-stack development, REST API design, authenticatio
 
 ## Deployment
 
-### 1. Database (MySQL)
+### 1. CSSharp Plugin
+- Download plugin build from Releases and drop into csgo folder
+- Must have Metamod and CSSharp plugins installed which can be found here:
+  - Metamod: https://www.sourcemm.net/downloads.php/?branch=master 
+  - CSSharp: https://github.com/roflmuffin/CounterStrikeSharp
+- Set Correct variables within the config file. This will ensure proper communication between c# plugin and backend
+- To display the site's link in chat, fill the 'frontendUrl' varaible within config.
+
+### 2. Database (MySQL) and CS
 - Create a managed MySQL instance (e.g., Railway, PlanetScale, Render, or AWS RDS).
 - Create a database for the project.
 - Configure environment variables in the backend:
@@ -61,7 +69,7 @@ This project demonstrates full-stack development, REST API design, authenticatio
 
 
 
-### 2. Backend (FastAPI)
+### 3. Backend (FastAPI)
 - Deploy the backend to a service such as Render, Railway, Fly.io, or a VPS.
 - Set environment variables:
   - `BACKEND_URL` (public backend URL)
@@ -74,7 +82,7 @@ This project demonstrates full-stack development, REST API design, authenticatio
 
 
 
-### 3. Frontend (React + Vite)
+### 4. Frontend (React + Vite)
 - Deploy to Vercel, Netlify, or similar static hosting.
 - Set environment variables:
   - `VITE_BACKEND_BASE_URL` to the deployed backend URL.

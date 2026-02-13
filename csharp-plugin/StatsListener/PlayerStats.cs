@@ -1,5 +1,6 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Commands;
 using McMaster.NETCore.Plugins;
 using StatsListener;
 using System.Reflection;
@@ -13,6 +14,7 @@ namespace StatsListener
         public override string ModuleName => "Player stats";
         public override string ModuleVersion => "1.0.0";
         public override string ModuleAuthor =>  "Davidg.528";
+
 
         StatsManager statsManager;
 
@@ -46,7 +48,6 @@ namespace StatsListener
 
             statsManager = new StatsManager(this,config);
 
-
             RegisterEventHandler<EventPlayerDeath>(statsManager.OnPlayerDeath, HookMode.Post);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd, HookMode.Post);
             RegisterEventHandler<EventBombPlanted>(statsManager.OnBombPlanted, HookMode.Post);
@@ -78,6 +79,7 @@ namespace StatsListener
             }
             return HookResult.Continue;
         }
+
     }
 
 }

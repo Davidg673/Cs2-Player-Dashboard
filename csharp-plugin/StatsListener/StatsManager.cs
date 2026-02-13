@@ -1,6 +1,8 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Entities;
 using System.Collections.Concurrent;
+using System.Numerics;
 using static StatsListener.StatsManager;
 
 
@@ -15,6 +17,9 @@ namespace StatsListener
 
         ConcurrentDictionary<ulong, ConcurrentDictionary<string, WeaponStats>> weaponStatsCache;
         ConcurrentDictionary<ulong, DateTime> playerJoinedTime;
+
+        string frontendUrl;
+        int timeToPrint = 0;
 
         public class WeaponStats //Used to store individual weapon stats per player for any weapon they use that round
         {
@@ -48,6 +53,7 @@ namespace StatsListener
         public StatsManager(BasePlugin plugin, PluginConfig config)
         {
             ingestClient = new IngestClient(config.ingestUrl, config.apiKey);
+            frontendUrl = config.frontendUrl;
         }
 
         public void Start()
@@ -124,7 +130,25 @@ namespace StatsListener
                     UpdateStats(player.SteamID, false, false, false, false, 0, 0, false, false, DateTime.UtcNow, false, true);
             }
 
-            return HookResult.Continue;
+            Server.PrintToChatAll($"Stats Saved!");
+
+            if (timeToPrint <= 0)
+            {
+                Server.PrintToChatAll($"\x04 Visit \x03{frontendUrl}/login\x04 to see your stats! Link can also be found in console!");
+                foreach (var player in Utilities.GetPlayers())
+                {
+                    if (player == null || !player.IsValid || player.IsBot) continue;
+                    player.PrintToConsole("==============================");
+                    player.PrintToConsole(" YOUR STATS DASHBOARD ");
+                    player.PrintToConsole($" {frontendUrl}/login ");
+                    player.PrintToConsole("==============================");
+                }
+
+
+                timeToPrint = 3;
+            } else timeToPrint--;
+
+                return HookResult.Continue;
         }
 
         public HookResult OnPlayerDisconnect(EventPlayerDisconnect @event, GameEventInfo info)
@@ -143,9 +167,15 @@ namespace StatsListener
             if (@event.Userid !=null && !@event.Userid.IsBot && @event.Userid.SteamID!=0)
             {
                 playerJoinedTime.TryAdd(@event.Userid.SteamID, DateTime.UtcNow);
+                @event.Userid.PrintToChat($"\x04 Visit \x03{frontendUrl}/login\x04 to see your stats! Link can also be found in console!");
+                @event.Userid.PrintToConsole("==============================");
+                @event.Userid.PrintToConsole(" YOUR STATS DASHBOARD ");
+                @event.Userid.PrintToConsole($" {frontendUrl}/login ");
+                @event.Userid.PrintToConsole("==============================");
+
             }
 
-            
+
             return HookResult.Continue;
         }
 
