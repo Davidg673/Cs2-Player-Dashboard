@@ -48,7 +48,6 @@ This project demonstrates full-stack development, REST API design, authenticatio
 
 - Integrated third-party Steam authentication
 
-
 ## Deployment
 
 ### 1. CSSharp Plugin
