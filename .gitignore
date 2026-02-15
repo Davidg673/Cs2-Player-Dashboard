@@ -191,6 +191,9 @@ dist/
 .vite/
 
 # C# build outputs
+.vs/
+bin/
+obj/
 csharp-plugin/addons/
 csharp-plugin/**/bin/
 csharp-plugin/**/obj/
