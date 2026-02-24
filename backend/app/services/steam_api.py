@@ -29,7 +29,8 @@ def get_player_name(steam_id: str) -> str | None:
         response.raise_for_status()
 
         data = response.json() ##convert to python dictionary
-        players = data.get("response", {}).get("players",[]) #use get here to automatically raise exceptions on entry not found
+        players = data.get("response", {}).get("players",[]) #use get here to automatically raise exceptions on entry not found.
+                                                             # Non-existing values get replaced with second parameter after comma instead of raising KeyError
 
         if not players:
             return None
@@ -37,9 +38,9 @@ def get_player_name(steam_id: str) -> str | None:
         return players[0]["personaname"]
 
     except RequestException as ex:
-        print(f"Steam API request failed: {ex}")
-        return None
+        print(f"Steam API request failed: {ex}") ##Used for backend debugging
+        raise ex
 
     except (KeyError, TypeError, ValueError) as ex:
-        print(f"Unexpected Steam response: {ex}")
-        return  None
+        print(f"Unexpected Steam response: {ex}") #Used for backend debugging
+        raise  ex
