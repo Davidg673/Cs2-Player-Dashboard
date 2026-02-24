@@ -5,9 +5,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db import metadata, engine
-from app.routes.players import router as players_router
-from app.routes.auth import router as auth_router
-from app.routes.stats import router as stats_router
+from app.routers.players import router as players_router
+from app.routers.auth import router as auth_router
+from app.routers.stats import router as stats_router
 
 
 app = FastAPI()

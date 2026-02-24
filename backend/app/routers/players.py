@@ -34,7 +34,7 @@ def get_player_data(steam_id: str) -> dict:
         raise HTTPException(status_code = 503, detail ="Database service is unavailable")
 
     except SQLAlchemyError as err:
-        raise HTTPException(status_code = 503, detail =f"An unexpected server error has occurred")
+        raise HTTPException(status_code = 503, detail ="An unexpected server error has occurred")
 
     if not resultPlayer:
         raise HTTPException(status_code= 404, detail = f"Player {steam_id} not found")
@@ -43,6 +43,8 @@ def get_player_data(steam_id: str) -> dict:
 
     #Map the table keys to a dictionary from the result tuple
     dataPlayer = dict(zip(playerStats.columns.keys(),resultPlayer))
+
+    #creates list of dictionaries each containing a weapon stats instance Requires conversion from _mapping obj to python dict
     dataWeapons = [
         dict(row._mapping)
         for row in rows
@@ -51,8 +53,9 @@ def get_player_data(steam_id: str) -> dict:
     #Convert datetime to ISO format for JSON compatibility
     if isinstance(dataPlayer.get("last_played"),datetime):
         dataPlayer["last_played"] = dataPlayer["last_played"].isoformat()
+    #Add player name to dict
     if player_name:
-        dataPlayer["steamid"] = player_name
+        dataPlayer["player_name"] = player_name
 
     return {
         "player":dataPlayer,
