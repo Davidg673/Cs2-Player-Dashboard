@@ -48,6 +48,13 @@ This project demonstrates full-stack development, REST API design, authenticatio
 
 - Integrated third-party Steam authentication
 
+## Testing
+
+- Implemented backend unit and endpoint tests using `pytest` and FastAPI’s `TestClient`.
+- Tested Steam OpenID login and callback flows, including valid and invalid authentication cases.
+- Verified player and stats endpoints for successful responses, missing players, invalid API keys, and database failure scenarios.
+- Used mocked database connections and patched external requests to isolate backend behaviour and test error handling reliably.
+
 ## Deployment
 
 ### 1. CSSharp Plugin
