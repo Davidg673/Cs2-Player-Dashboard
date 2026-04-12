@@ -1,4 +1,3 @@
-import React from "react";
 import "./LoginPage.css"
 import Meteors from "./components/Meteors"
 
@@ -9,12 +8,17 @@ const LoginPage = ()=>{
         window.location.href = `${BACKEND}/auth/steam/login`;
     };
 
+    const handleAdminlogin = () =>{
+        
+    };
+
     return (
         <>
             <Meteors/>
             <div className = "login-background"> 
                 <h1> Welcome to CS2 Dashboard!</h1>
                 <button onClick={handleLogin}>Login with Steam</button>
+                <button className="mt-5" onClick={handleAdminlogin}>Admin Login</button>
             </div>
         </>
     );

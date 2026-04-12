@@ -9,6 +9,7 @@ from app.routers.players import router as players_router
 from app.routers.auth import router as auth_router
 from app.routers.stats import router as stats_router
 
+from app.services.create_owner import create_owner
 
 app = FastAPI()
 
@@ -34,6 +35,8 @@ app.include_router(stats_router)
 ##Create Database
 metadata.create_all(bind=engine)
 
+##Create site owner
+create_owner()
 
 @app.get("/")
 def root():

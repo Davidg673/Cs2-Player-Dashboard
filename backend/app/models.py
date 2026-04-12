@@ -25,7 +25,7 @@ playerStats = Table( #Table signature from C# plugin must match exactly
 weaponStats = Table(
     "player_weapon_stats",
     metadata,
-    Column("steamid", String(18), nullable=False),
+    Column("steamid", String(18), nullable=False ,primary_key=True),
     Column("weapon", String(18), nullable=False),
     Column("kills", Integer, nullable=False, default=0),
     Column("headshots", Integer, nullable=False, default=0),
@@ -34,9 +34,13 @@ weaponStats = Table(
     PrimaryKeyConstraint("steamid","weapon")
 )
 
-"""
-player_roles = Table(
-    "player_roles",
+
+users = Table(
+    "users",
     metadata,
+    Column("id",Integer,autoincrement=True, primary_key=True),
+    Column("steamid",String(18),nullable=True, unique=True),
+    Column("username",String(50),nullable=False),
+    Column("password_hash",String(255),nullable=False),
+    Column("role",String(15),nullable=False)
 )
-"""
