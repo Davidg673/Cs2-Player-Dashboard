@@ -30,7 +30,7 @@ def create_owner():
                 steamid=None,
                 username=OWNER_USERNAME,
                 password_hash=hasher.hash(OWNER_PASSWORD),
-                role="admin"
+                role="owner"
             )
 
             stmt = stmt.on_duplicate_key_update(
@@ -38,7 +38,7 @@ def create_owner():
                 steamid=None,
                 username=stmt.inserted.username,
                 password_hash = stmt.inserted.password_hash,
-                role="admin"
+                role="owner"
             )
 
             conn.execute(stmt)

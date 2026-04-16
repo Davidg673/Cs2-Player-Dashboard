@@ -5,6 +5,12 @@ from fastapi.responses import  RedirectResponse
 from urllib.parse import  urlencode
 import  requests
 
+from sqlalchemy.exc import SQLAlchemyError
+from app.db import engine
+from sqlalchemy.dialects.mysql import insert as mysql_insert
+from app.models import users
+
+
 load_dotenv()
 
 BACKEND_URL = os.getenv("BACKEND_URL")
@@ -56,4 +62,28 @@ def steam_return(request: Request):
 
     steam_id = query["openid.claimed_id"].split("/")[-1]
 
+    
+    result = create_user(steam_id)
+    
+    if result and result["error"]:
+        return RedirectResponse(f"{FRONTEND_URL}/dashboard?error={result['error']}")
+
     return RedirectResponse(f"{FRONTEND_URL}/dashboard?steam_id={steam_id}")  #back to front-end
+
+
+def create_user(returned_steam_id : str):
+    try:
+        with engine.begin() as conn:
+            stmt = mysql_insert(users).values(
+                steamid = returned_steam_id,
+                username = None,
+                password_hash = None,
+                role = "user"
+            )
+
+            stmt = stmt.prefix_with("IGNORE")
+            
+            conn.execute(stmt)
+
+    except SQLAlchemyError as sql_error:
+        return {"error":str(sql_error)}

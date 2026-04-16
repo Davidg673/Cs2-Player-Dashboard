@@ -9,7 +9,7 @@ const LoginPage = ()=>{
     };
 
     const handleAdminlogin = () =>{
-        
+        window.location.href= `/admin_login`
     };
 
     return (

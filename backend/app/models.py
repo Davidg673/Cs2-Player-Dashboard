@@ -26,12 +26,11 @@ weaponStats = Table(
     "player_weapon_stats",
     metadata,
     Column("steamid", String(18), nullable=False ,primary_key=True),
-    Column("weapon", String(18), nullable=False),
+    Column("weapon", String(18), nullable=False, primary_key=True),
     Column("kills", Integer, nullable=False, default=0),
     Column("headshots", Integer, nullable=False, default=0),
     Column("shots_hit", Integer, nullable=False, default=0),
     Column("damage_dealt", Integer, nullable=False, default=0),
-    PrimaryKeyConstraint("steamid","weapon")
 )
 
 
@@ -40,7 +39,7 @@ users = Table(
     metadata,
     Column("id",Integer,autoincrement=True, primary_key=True),
     Column("steamid",String(18),nullable=True, unique=True),
-    Column("username",String(50),nullable=False),
-    Column("password_hash",String(255),nullable=False),
+    Column("username",String(50),nullable=True , unique=True),
+    Column("password_hash",String(255),nullable=True),
     Column("role",String(15),nullable=False)
 )

@@ -19,6 +19,15 @@ const StatsPage = () =>{
   useEffect(()=> {
     const params = new URLSearchParams(location.search);
     const steamID = params.get("steam_id");
+    const returnedError=params.get("error");
+
+
+    if (returnedError)
+    {
+      setError("Database Error, please try again");
+      setLoading(false);
+      return;
+    }
 
     if (!steamID)
     {
@@ -122,7 +131,7 @@ const StatsPage = () =>{
         <div className='top-banner'>
           <div className="top-banner-sub">
             <img className='player-image' src='/operator.png' alt="Operator"></img>
-            <h1> {playerData?.player.steamid}</h1>
+            <h1> {playerData?.player.player_name}</h1>
           </div> 
           <div className="top-banner-sub" >
             <h2>Total Playtime: {normalizePlaytime(playerData?.player.playtime)}</h2>
