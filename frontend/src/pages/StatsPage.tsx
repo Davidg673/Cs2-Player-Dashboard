@@ -1,5 +1,5 @@
 import React from "react";
-import "./StatsPage.css"
+import "../css/StatsPage.css"
 import { useEffect,useState } from "react";
 import {useLocation } from "react-router-dom";
 

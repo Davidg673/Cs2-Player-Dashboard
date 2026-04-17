@@ -69,3 +69,9 @@ button:focus-visible {
   }
 }
 
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

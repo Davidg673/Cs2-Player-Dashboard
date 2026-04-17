@@ -1,5 +1,5 @@
-import "./LoginPage.css"
-import Meteors from "./components/Meteors"
+import "../css/LoginPage.css"
+import Meteors from "../components/Meteors"
 
 const LoginPage = ()=>{
   const BACKEND = import.meta.env.VITE_BACKEND_BASE_URL;
