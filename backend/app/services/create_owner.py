@@ -1,4 +1,7 @@
 import os
+
+from fastapi import HTTPException
+
 from dotenv import load_dotenv
 import logging
 from argon2 import PasswordHasher
@@ -10,7 +13,7 @@ from app.db import engine
 
 load_dotenv()
 
-logger = logging.getLogger("create_owner");
+logger = logging.getLogger(__name__);
 hasher = PasswordHasher()
 
 OWNER_USERNAME = os.getenv("OWNER_USERNAME")
@@ -43,6 +46,6 @@ def create_owner():
 
             conn.execute(stmt)
 
-    except SQLAlchemyError:
-        logger.exception("DB operation failed")
-        raise
+    except SQLAlchemyError as ex:
+        logger.exception(str(ex))
+        raise HTTPException(status_code=500, detail= "An Error Occurred")

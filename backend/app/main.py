@@ -8,6 +8,7 @@ from app.db import metadata, engine
 from app.routers.players import router as players_router
 from app.routers.auth import router as auth_router
 from app.routers.stats import router as stats_router
+from app.routers.verify_admin import router as verify_admin_router
 
 from app.services.create_owner import create_owner
 
@@ -16,9 +17,8 @@ app = FastAPI()
 load_dotenv()
 
 raw_origins = os.getenv("CORS_ORIGINS","")
-origins = [ ##Whitelists addresses visited by backend
-    o.strip() for o in raw_origins.split(",") if o
-]
+##Whitelists addresses visited by backend
+origins = [entry.strip() for entry in raw_origins.split(",") if entry]
 
 app.add_middleware(  #Ensures local front end can call online backend due to CORS restrictions
     CORSMiddleware,
@@ -32,6 +32,8 @@ app.include_router(players_router)
 app.include_router(auth_router)
 app.include_router(stats_router)
 
+app.include_router(verify_admin_router)
+
 ##Create Database
 metadata.create_all(bind=engine)
 
@@ -39,6 +41,6 @@ metadata.create_all(bind=engine)
 create_owner()
 
 @app.get("/")
-def root():
-    return {"status" : "FastAPI is running"}
+async def root():
+    return {"status" : "Hello World"}
 
